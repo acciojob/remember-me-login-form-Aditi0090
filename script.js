@@ -1,41 +1,40 @@
-//your JS code here. If required.
-document.addEventListener("DOMContentLoaded", function () {
-    const usernameInput = document.getElementById("username");
-    const passwordInput = document.getElementById("password");
-    const rememberCheckbox = document.getElementById("checkbox");
-    const submitButton = document.getElementById("submit");
-    const existingUserButton = document.getElementById("existing");
+document.addEventListener("DOMContentLoaded", () => {
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+  const rememberMeCheckbox = document.getElementById("checkbox");
+  const submitButton = document.getElementById("submit");
+  const existingUserButton = document.getElementById("existing");
 
-    const storedUsername = localStorage.getItem("username");
-    const storedPassword = localStorage.getItem("password");
-    
-    if (storedUsername && storedPassword) {
-        existingUserButton.style.display = "block";
-    } else {
-        existingUserButton.style.display = "none";
+  const savedUsername = localStorage.getItem("username");
+  const savedPassword = localStorage.getItem("password");
+
+  if (savedUsername && savedPassword) {
+    existingUserButton.style.display = "block";
+  }
+
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault(); 
+
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+
+    if (!username || !password) {
+      alert("Please enter both username and password.");
+      return;
     }
 
-    submitButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        const username = usernameInput.value;
-        const password = passwordInput.value;
-        const rememberMe = rememberCheckbox.checked;
+    alert(`Logged in as ${username}`);
 
-        if (rememberMe) {
-            localStorage.setItem("username", username);
-            localStorage.setItem("password", password);
-        } else {
-            localStorage.removeItem("username");
-            localStorage.removeItem("password");
-        }
+    if (rememberMeCheckbox.checked) {
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
+    } else {
+      localStorage.removeItem("username");
+      localStorage.removeItem("password");
+    }
+  });
 
-        alert(`Logged in as ${username}`);
-        existingUserButton.style.display = rememberMe ? "block" : "none";
-    });
-
-    existingUserButton.addEventListener("click", function () {
-        if (storedUsername) {
-            alert(`Logged in as ${storedUsername}`);
-        }
-    });
+  existingUserButton.addEventListener("click", () => {
+    alert(`Logged in as ${savedUsername}`);
+  });
 });
