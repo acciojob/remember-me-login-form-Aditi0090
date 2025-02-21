@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <h1>Login Form</h1>
-    <form id="loginForm">
+
+    <form id="login-form">
         <label for="username">Username:</label>
-        <input type="text" id="username" placeholder="Enter your username" required>
+        <input type="text" id="username" placeholder="Username">
+
+        <br>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Enter your password" required>
+        <input type="password" id="password" placeholder="Password">
 
-        <label for="checkbox">
-            <input type="checkbox" id="checkbox"> Remember me.
-        </label>
+        <br>
+
+        <label for="checkbox">Remember me:</label>
+        <input type="checkbox" id="checkbox">
+
+        <br>
 
         <input type="submit" id="submit" value="Submit">
     </form>
@@ -25,5 +31,6 @@
     <button id="existing" style="display: none;">Login as existing user</button>
 
     <script src="script.js"></script>
+
 </body>
 </html>
