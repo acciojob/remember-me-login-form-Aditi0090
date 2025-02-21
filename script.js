@@ -5,12 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitButton = document.getElementById("submit");
     const existingButton = document.getElementById("existing");
 
-    const savedUsername = localStorage.getItem("username");
-    const savedPassword = localStorage.getItem("password");
-
-    if (savedUsername && savedPassword) {
-        existingButton.style.display = "block";
+    function updateExistingButton() {
+        const savedUsername = localStorage.getItem("username");
+        const savedPassword = localStorage.getItem("password");
+        existingButton.style.display = (savedUsername && savedPassword) ? "block" : "none";
     }
+
+    updateExistingButton();
 
     document.getElementById("loginForm").addEventListener("submit", (e) => {
         e.preventDefault();
@@ -27,10 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.removeItem("password");
         }
 
-        existingButton.style.display = localStorage.getItem("username") ? "block" : "none";
+        updateExistingButton();
     });
 
     existingButton.addEventListener("click", () => {
+        const savedUsername = localStorage.getItem("username");
         alert(`Logged in as ${savedUsername}`);
     });
 });
